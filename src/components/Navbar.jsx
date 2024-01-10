@@ -8,7 +8,7 @@ import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, 
 function Navbar({ isLoggedIn, setIsLoggedIn }) {
     return (
         <div className='flex justify-between items-center 
-        bg-white p-5 rounded-2xl'>
+        bg-white p-4 rounded-2xl'>
             {/* navbar */}
             <nav>
                 <ul className='flex space-x-4'>
