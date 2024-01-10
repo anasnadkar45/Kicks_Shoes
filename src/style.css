@@ -1,0 +1,27 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Braah+One&family=Noto+Sans&family=Rubik:wght@300;400;500;600;700;800;900&family=Teko:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'Braah One';
+    src: url('./path-to-your-fonts/BraahOne-Regular.woff2') format('woff2');
+    /* Add other formats if needed */
+  }
+  
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('./path-to-your-fonts/NotoSans-Regular.woff2') format('woff2');
+    /* Add other formats if needed */
+  }
+  
+  @font-face {
+    font-family: 'Rubik';
+    src: url('./path-to-your-fonts/Rubik-Regular.woff2') format('woff2');
+    /* Add other formats if needed */
+  }
+  
+  @font-face {
+    font-family: 'Teko';
+    src: url('./path-to-your-fonts/Teko-Regular.woff2') format('woff2');
+    /* Add other formats if needed */
+  }
+  
