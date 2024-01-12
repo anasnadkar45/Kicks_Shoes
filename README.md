@@ -1,5 +1,9 @@
 # React + Vite
+<<<<<<< HEAD
 project Name : Kick shoes project 1
+=======
+project Name : Kick shoes project
+>>>>>>> 35a642c96ee46dae9cddbe9ea2f06dff8fa770ae
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
