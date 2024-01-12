@@ -1,8 +1,115 @@
-import React from 'react'
+import React, { useState } from 'react'
+import toast from 'react-hot-toast'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { FcGoogle } from 'react-icons/fc'
+import { GiRoundStar } from 'react-icons/gi'
+import { NavLink, useNavigate } from 'react-router-dom'
+import Button2 from '../components/Button2'
 
-function Signup() {
+function Signup({ isSignUp, setIsSignUp, formData, setFormData }) {
+  const navigate = useNavigate()
+
+  const [showPassword, setShowPasword] = useState(false)
+  function changeHandler(event) {
+    setFormData((prevData) => (
+      {
+        ...prevData,
+        [event.target.name]: event.target.value,
+      }
+    ));
+  }
+
+  function submitHandler(event) {
+    event.preventDefault()
+    setIsSignUp(true)
+    toast.success("Signup successful")
+    navigate("/home", { state: formData });
+    console.log(formData)
+  }
   return (
-    <div>Signup</div>
+    <div className='max-width: 1280px h-[80vh] flex justify-center items-center'  >
+      <div className='w-[400px] flex flex-col justify-center 
+         bg-white rounded-md p-5 gap-5'>
+        <div className='flex flex-col '>
+          <h1 className='font-bold text-3xl text-slate-700'>Welcome back!</h1>
+          <p className='text-[12px]'>Enter your Details for signing up</p>
+        </div>
+
+        <form onSubmit={submitHandler} className='flex flex-col gap-3'>
+          <label className=''>
+            <p className='text-left text-[13px]'>Name</p>
+            <input type="text"
+              placeholder='Name'
+              name='name'
+              value={formData.name}
+              onChange={changeHandler}
+              className='w-full bg-transparent border-2 rounded-md p-2 border-gray-200 focus:outline-none focus:border-2
+                            focus:border-[#6366f1]'
+            />
+          </label>
+          <label className=''>
+            <p className='text-left text-[13px]'>Emial</p>
+            <input type="text"
+              placeholder='Email'
+              name='email'
+              value={formData.email}
+              onChange={changeHandler}
+              className='w-full bg-transparent border-2 rounded-md p-2 border-gray-200 focus:outline-none focus:border-2
+                            focus:border-[#6366f1]'
+            />
+          </label>
+          <label className='relative'>
+            <p className='text-left text-[13px]'>Password</p>
+            <div className='flex items-center'>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder='Password'
+                name='password'
+                value={formData.password}
+                onChange={changeHandler}
+                className='w-full bg-transparent border-2 rounded-md p-2 border-gray-200 focus:outline-none focus:border-2 focus:border-[#6366f1]'
+              />
+              <span
+                className='absolute right-2 cursor-pointer'
+                onClick={() => setShowPasword((prev) => !prev)}
+              >
+                {showPassword ? <AiOutlineEyeInvisible className='text-gray-400' /> : <AiOutlineEye className='text-gray-400' />}
+              </span>
+            </div>
+          </label>
+           
+          <button className='w-full  text-[#e0e7ff] bg-[#6366f1] 
+                    shadow-sm focus:outline-none focus:bg-[#5457ef]'>Signup</button>
+        </form>
+
+        <div className='h-[2px] w-full bg-slate-200'></div>
+        <button className='w-full bg-[#e0e7ff] text-[#6366f1]
+                    shadow-sm focus:outline-none flex justify-center items-center 
+                    text-sm gap-2'>
+          <FcGoogle size="20" />
+          Continue with Google
+        </button>
+
+
+        <p className='text-slate-400 text-[11px] mt-[-10px]'>Already registerd?<span className='underline ml-1'>
+          <NavLink to="/Login">Do it here</NavLink>
+        </span></p>
+
+        <div className='flex justify-center items-center gap-2'>
+          <p className='text-slate-400 text-[13px]'>
+            Trusted by +3000 happy users
+          </p>
+          <div className='flex'>
+            <GiRoundStar className='text-yellow-400' />
+            <GiRoundStar className='text-yellow-400' />
+            <GiRoundStar className='text-yellow-400' />
+            <GiRoundStar className='text-yellow-300' />
+            <GiRoundStar className='text-yellow-200' />
+          </div>
+        </div>
+
+      </div>
+    </div>
   )
 }
 

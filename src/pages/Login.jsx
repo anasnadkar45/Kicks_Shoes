@@ -3,15 +3,10 @@ import toast from 'react-hot-toast';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
-import { Button } from '@nextui-org/react';
 import { GiRoundStar } from "react-icons/gi";
-import UserDetails from './UserDetails';
-function Login({ isLoggedIn, setIsLoggedIn }) {
+
+function Login({ isLoggedIn, setIsLoggedIn ,formData ,setFormData }) {
     const navigate = useNavigate()
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-    })
 
     const [showPassword, setShowPasword] = useState(false)
     function changeHandler(event) {
@@ -27,7 +22,7 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
         event.preventDefault()
         setIsLoggedIn(true)
         toast.success("Logged in")
-        navigate("/home", { state:  formData  });
+        navigate("/home", { state: formData });
         console.log(formData)
     }
     return (
@@ -74,14 +69,15 @@ function Login({ isLoggedIn, setIsLoggedIn }) {
 
                     <button className='w-full  text-[#e0e7ff] bg-[#6366f1] 
                     shadow-sm focus:outline-none'>Login</button>
-                    <div className='h-[2px] w-full bg-slate-200'></div>
-                    <button className='w-full bg-[#e0e7ff] text-[#6366f1]
+                </form>
+
+                <div className='h-[2px] w-full bg-slate-200'></div>
+                <button className='w-full bg-[#e0e7ff] text-[#6366f1]
                     shadow-sm focus:outline-none flex justify-center items-center 
                     text-sm gap-2'>
-                        <FcGoogle size="20" />
-                        Continue with Google
-                    </button>
-                </form>
+                    <FcGoogle size="20" />
+                    Continue with Google
+                </button>
 
                 <p className='text-slate-400 text-[11px] mt-[-10px]'>Not registerd?<span className='underline ml-1'>
                     <NavLink to="/signup">Do it here</NavLink>

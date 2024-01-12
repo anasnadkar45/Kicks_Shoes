@@ -5,7 +5,10 @@ import search from '../assets/search.svg'
 import { FaUser } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input } from '@nextui-org/react';
-function Navbar({ isLoggedIn, setIsLoggedIn }) {
+import Signup from '../pages/Signup';
+import Button1 from './Button1';
+function Navbar({ isLoggedIn, setIsLoggedIn, isSignUp, setIsSignUp, formData }) {
+
     return (
         <div className='flex justify-between items-center 
         bg-white p-4 rounded-2xl'>
@@ -52,25 +55,21 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 />
 
                 {
-                    !isLoggedIn &&
+                    (!isLoggedIn && !isSignUp) &&
                     <Link to="/login">
-                        <Button color="primary" variant="flat" className='bg-[#e0e7ff] text-[#6366f1]'>
-                            Login
-                        </Button>
+                        <Button1 text="Login" />
                     </Link>
                 }
 
                 {
-                    !isLoggedIn &&
-                    <Link to="/login">
-                        <Button color="primary" variant="flat" className='bg-[#e0e7ff] text-[#6366f1]'>
-                            Signup
-                        </Button>
+                    (!isLoggedIn && !isSignUp) &&
+                    <Link to="/signup">
+                        <Button1 text="Signup" />
                     </Link>
                 }
 
                 {
-                    isLoggedIn &&
+                    (isLoggedIn || isSignUp) &&
                     <Dropdown placement="bottom-end">
                         <DropdownTrigger>
                             <Avatar
@@ -80,14 +79,14 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                                 color="secondary"
                                 name="Jason Hughes"
                                 size="sm"
-                                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                src={formData.profile}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="Profile Actions" variant="flat">
                             <DropdownItem key="profile" className="h-14 gap-2">
                                 <Link to="/userdetails">
                                     <p className="font-semibold text-black">Signed in as</p>
-                                    <p className="font-semibold">zoey@example.com</p>
+                                    <p className="font-semibold">{formData.email}</p>
                                 </Link>
                             </DropdownItem>
                             <DropdownItem key="settings">My Settings</DropdownItem>
@@ -96,7 +95,10 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                             <DropdownItem key="system">System</DropdownItem>
                             <DropdownItem key="configurations">Configurations</DropdownItem>
                             <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-                            <DropdownItem key="logout" color="danger">
+                            <DropdownItem key="logout" color="danger" onClick={() => {
+                                setIsSignUp(false);
+                                setIsLoggedIn(false)
+                            }}>
                                 Log Out
                             </DropdownItem>
                         </DropdownMenu>
@@ -104,13 +106,14 @@ function Navbar({ isLoggedIn, setIsLoggedIn }) {
                 }
 
                 {
-                    isLoggedIn &&
+                    (isLoggedIn || isSignUp) &&
                     <Link to="/cart">
                         <FaShoppingBag />
                     </Link>
                 }
 
             </div>
+            
         </div>
     )
 }
